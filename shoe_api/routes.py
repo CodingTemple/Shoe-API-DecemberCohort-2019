@@ -78,3 +78,16 @@ def delete_product(id):
     db.session.commit()
 
     return product_schema.jsonify(product)
+
+
+
+''' 
+    Create a WEB-API using the following HTTP methods which are:
+    
+    CREATE = POST
+    RETRIEVE = GET
+    UPDATE = PUT
+    DELETE = DELETE
+
+    AKA C.R.U.D
+'''
