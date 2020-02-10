@@ -40,3 +40,41 @@ def get_all_products():
     all_products = Product.query.all()
     result = products_schema.dump(all_products)
     return jsonify(result)
+
+# UPDATE A PRODUCT
+@app.route('/product/<id>', methods=['PUT'])
+def update_product(id):
+    # Get the product that we want to update based on its id
+    product = Product.query.get(id)
+
+    # Tell endpoint what to update
+    name = request.json['name']
+    description = request.json['description']
+    price = request.json['price']
+    qty = request.json['qty']
+    photo = request.json['photo']
+    color_way = request.json['color_way']
+
+    # Save the updated value to database
+    product.name = name
+    product.description = description
+    product.price = price
+    product.qty = qty
+    product.photo = photo
+    product.color_way = color_way
+
+    # Commit the changes of values into Database
+    db.session.commit()
+
+    return product_schema.jsonify(product)
+
+
+# DELETE PRODUCT
+@app.route('/product/<id>', methods = ['DELETE'])
+def delete_product(id):
+    # Look for a product to delete by its id
+    product = Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+
+    return product_schema.jsonify(product)
