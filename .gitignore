@@ -1,0 +1,5 @@
+migrations/
+shoe-api-env/
+.vscode/
+__pycache__
+app.db
